@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cipher — Networking Camp</title>
+<meta name="description" content="Cipher Team Networking Camp: session presentations from networking basics to wireless.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+<a class="skip" href="#sessions">Skip to sessions</a>
+<main class="wrap">
+  <header class="masthead">
+    <h1>Cipher</h1>
+    <p class="subtitle">Networking Camp</p>
+  </header>
+
+  <section id="sessions" class="sessions" aria-labelledby="sessions-h">
+    <div class="sec-head">
+      <h2 id="sessions-h">Sessions</h2>
+      <span class="count" id="count"></span>
+    </div>
+    <ol id="session-grid" class="grid"></ol>
+    <noscript><p>Please enable JavaScript to view the sessions.</p></noscript>
+  </section>
+</main>
+<script src="src/data/sessions.js"></script>
+<script src="src/main.js"></script>
+</body>
+</html>
