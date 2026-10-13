@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session 01 · Introduction to Networking · Cipher Team</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F4F0;--ink:#262A29;--mute:#686E69;--line:#D6D3CA;--dark-green:#002F2B;--green:#006254;--green-light:#2E9C8A;--yellow:#F8B200;
+--serif:'Instrument Serif',Georgia,'Times New Roman',serif;--sans:Inter,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace}
+*{box-sizing:border-box}
+html{scroll-snap-type:y proximity;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 clamp(15px,1.3vw,20px)/1.5 var(--sans)}
+.s{min-height:100vh;min-height:100svh;scroll-snap-align:start;display:flex;align-items:center;padding:7vh 7vw;border-bottom:1px solid var(--line)}
+.in{width:100%;max-width:1200px;margin:0 auto}
+h1,h2,h3{font-family:var(--serif);font-weight:400;margin:0}
+h2{font-size:clamp(2.2rem,4.8vw,4.2rem);line-height:1.05;margin-bottom:.45em;letter-spacing:-.01em;max-width:18em}
+h3{font-size:1.7em;line-height:1.1;margin-bottom:.25em}
+p{margin:0 0 .7em;max-width:38em}
+.m{font:500 .72em var(--mono);color:var(--mute);letter-spacing:.04em;margin-bottom:1.2em;display:block}
+.lead{font-size:1.25em;color:var(--mute)}
+.hl{background:linear-gradient(transparent 58%,rgba(248,178,0,.5) 0);padding:0 .1em}
+b{font-weight:600;color:var(--dark-green)}
+.g{display:grid;gap:3vw;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));align-items:start}
+.two{display:grid;gap:4vw;grid-template-columns:1.1fr 1fr;align-items:center}
+@media(max-width:800px){.two{grid-template-columns:1fr}}
+.c{border-top:1px solid var(--ink);padding-top:.8em}
+.c p{color:var(--mute);font-size:.95em}
+.c ul,.ul{margin:.3em 0 0;padding-left:1.1em;color:var(--mute);font-size:.92em}
+.c li,.ul li{margin-bottom:.35em}
+.t{font:500 .78em var(--mono);color:var(--green)}
+.note{border-left:3px solid var(--yellow);padding:.2em 0 .2em 1em;margin-top:1.2em;max-width:44em}
+svg{display:block;width:100%;height:auto}
+.d line,.d path,.d rect,.d circle.r{stroke:var(--ink);stroke-width:1.6;fill:none}
+.d circle{fill:var(--bg);stroke:var(--green);stroke-width:1.8}
+.d circle.f{fill:var(--green)}
+.d .w{stroke:var(--green-light);stroke-dasharray:4 4}
+.d text{font:500 10px var(--mono);fill:var(--mute);stroke:none}
+.d .y{fill:var(--yellow);stroke:none}
+.st{display:grid;grid-template-columns:auto 11em 1fr;gap:0 1.2em;align-items:baseline}
+.st>*{border-top:1px solid var(--line);padding:.42em 0}
+.st .n{font:500 .8em var(--mono);color:var(--green)}
+.st .h{font-family:var(--serif);font-size:1.5em;line-height:1.1}
+.st span:last-child{color:var(--mute);font-size:.9em}
+.mp{display:grid;grid-template-columns:1fr 1fr;gap:0 2em}
+.mp>div{border-top:1px solid var(--line);padding:.7em 0}
+.mp .a{font-family:var(--serif);font-size:1.5em}
+.mp .l{color:var(--mute);font-size:.9em}
+.cov h1{font-size:clamp(3.2rem,9vw,8rem);line-height:.95;letter-spacing:-.02em;margin:.2em 0 .3em}
+.cov .rule{width:5em;height:4px;background:var(--yellow);margin:1.5em 0}
+.end{text-align:center}.end h1{font-size:clamp(3.5rem,11vw,10rem);line-height:1}.end .rule{margin:1.2em auto}
+.chips{display:flex;flex-wrap:wrap;gap:.5em;margin:.6em 0 0}.chips span{border:1px solid var(--line);padding:.15em .7em;font:500 .8em var(--mono)}
+#bar{position:fixed;top:0;left:0;height:3px;width:100%;background:var(--green);transform:scaleX(0);transform-origin:0 0;z-index:9}
+#n{position:fixed;right:2.2vw;bottom:2.2vh;font:500 .75rem var(--mono);color:var(--mute);z-index:9;background:var(--bg);padding:.2em .5em}
+.js .rv{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
+.js .on .rv{opacity:1;transform:none}
+.rv:nth-child(2){transition-delay:.08s}.rv:nth-child(3){transition-delay:.16s}.rv:nth-child(4){transition-delay:.24s}
+:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .rv{opacity:1;transform:none;transition:none}}
+@media(max-width:700px){.st{grid-template-columns:auto 1fr}.st span:last-child{grid-column:1/-1}.mp{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="bar" role="progressbar" aria-label="Presentation progress"></div>
+<div id="n" aria-live="polite">01 / 18</div>
+<main>
+
+<section class="s cov" aria-label="Cover"><div class="in">
+<span class="m rv">Cipher Team · Networking Camp · Session 01</span>
+<h1 class="rv">Introduction to<br>Networking</h1>
+<div class="rule rv"></div>
+<p class="lead rv">Networks, devices, protocols, and the models that explain how data moves.</p>
+</div></section>
+
+<section class="s"><div class="in two">
+<div><span class="m rv">The question</span><h2 class="rv">How does data travel from one device to another?</h2><p class="lead rv">Keep this question in mind. By the end of the session, you will be able to follow the journey step by step.</p></div>
+<svg class="d rv" viewBox="0 0 320 140" role="img" aria-label="Two devices connected by a link with a question mark"><rect x="10" y="40" width="70" height="50" rx="3"/><rect x="0" y="94" width="90" height="8"/><rect x="250" y="40" width="70" height="50" rx="3"/><rect x="240" y="94" width="90" height="8"/><line x1="90" y1="65" x2="240" y2="65" stroke-dasharray="5 5"/><circle class="f" cx="165" cy="65" r="16"/><text x="165" y="70" text-anchor="middle" style="fill:#fff;font-size:16px">?</text><text x="45" y="124" text-anchor="middle">sender</text><text x="285" y="124" text-anchor="middle">receiver</text></svg>
+</div></section>
+
+<section class="s"><div class="in two">
+<div><span class="m rv">Foundations</span><h2 class="rv">What is a network?</h2>
+<p class="lead rv">A <span class="hl">network</span> is a group of connected devices that exchange data by following agreed rules.</p>
+<ul class="ul rv"><li>Devices connect through wired or wireless links.</li><li>They exchange information and share resources and services.</li><li>Communication needs both a connection and compatible protocols.</li></ul>
+<p class="note rv">A network does not have to be connected to the internet. A few computers in a lab form a network on their own.</p></div>
+<svg class="d rv" viewBox="0 0 300 220" role="img" aria-label="Devices connected by wired and wireless links"><line x1="150" y1="110" x2="50" y2="40"/><line x1="150" y1="110" x2="250" y2="40"/><line x1="150" y1="110" x2="50" y2="180"/><line class="w" x1="150" y1="110" x2="250" y2="180"/><circle class="f" cx="150" cy="110" r="16"/><circle cx="50" cy="40" r="13"/><circle cx="250" cy="40" r="13"/><circle cx="50" cy="180" r="13"/><circle cx="250" cy="180" r="13"/><text x="60" y="80">wired</text><text x="205" y="160">wireless</text></svg>
+</div></section>
+
+<section class="s"><div class="in"><span class="m rv">Purpose</span><h2 class="rv">Why do we need networks?</h2>
+<div class="g">
+<div class="c rv"><h3>Communicate</h3><p>Messages, calls, and video between people and devices.</p></div>
+<div class="c rv"><h3>Share</h3><p>Laptops sharing files, or a whole office using one printer.</p></div>
+<div class="c rv"><h3>Use services</h3><p>A student opening the university portal or a shared application.</p></div>
+<div class="c rv"><h3>Reach far away</h3><p>Connecting to remote systems and the internet.</p></div>
+</div></div></section>
+
+<section class="s"><div class="in two">
+<div><span class="m rv">Classification</span><h2 class="rv">Networks by scope</h2>
+<div class="g" style="grid-template-columns:1fr 1fr;gap:1.2em 2vw">
+<div class="c rv"><h3>PAN</h3><p>Personal Area Network. Around one person, like a phone and Bluetooth earbuds.</p></div>
+<div class="c rv"><h3>LAN</h3><p>Local Area Network. One site: a home, office, lab, or university building.</p></div>
+<div class="c rv"><h3>MAN</h3><p>Metropolitan Area Network. Spans a city-scale area.</p></div>
+<div class="c rv"><h3>WAN</h3><p>Wide Area Network. Connects sites across regions or countries.</p></div></div>
+<p class="note rv">These are geographic categories, not strict rules. Speed and ownership do not define them. The internet connects networks around the world.</p></div>
+<svg class="d rv" viewBox="0 0 300 300" role="img" aria-label="Nested circles from PAN to WAN"><circle class="r" cx="150" cy="150" r="145"/><circle class="r" cx="150" cy="170" r="110"/><circle class="r" cx="150" cy="195" r="70"/><circle class="y" cx="150" cy="225" r="28" style="fill:var(--yellow);stroke:none"/><text x="150" y="18" text-anchor="middle">WAN</text><text x="150" y="68" text-anchor="middle">MAN</text><text x="150" y="132" text-anchor="middle">LAN</text><text x="150" y="229" text-anchor="middle" style="fill:var(--ink)">PAN</text></svg>
+</div></section>
+
+<section class="s"><div class="in two">
+<div><span class="m rv">Arrangement</span><h2 class="rv">What is network topology?</h2>
+<p class="lead rv">Topology is the arrangement of devices and the connections between them.</p>
+<p class="rv">It affects how devices connect, what happens when something fails, how easily the network grows, and how much it costs to build and manage.</p>
+<p class="note rv">Physical topology is how cables and devices are laid out. Logical topology is how data flows. Today we focus on the shapes.</p></div>
+<svg class="d rv" viewBox="0 0 300 200" role="img" aria-label="Devices as nodes and links"><line x1="40" y1="40" x2="150" y2="100"/><line x1="40" y1="160" x2="150" y2="100"/><line x1="150" y1="100" x2="260" y2="40"/><line x1="150" y1="100" x2="260" y2="160"/><circle cx="40" cy="40" r="12"/><circle cx="40" cy="160" r="12"/><circle cx="260" cy="40" r="12"/><circle cx="260" cy="160" r="12"/><circle class="f" cx="150" cy="100" r="14"/><text x="158" y="132">link</text><text x="148" y="82" text-anchor="end">node</text></svg>
+</div></section>
+
+<section class="s"><div class="in"><span class="m rv">Common shapes</span><h2 class="rv">Bus, star, and ring</h2>
+<div class="g">
+<div class="c rv"><h3>Bus</h3>
+<svg class="d" viewBox="0 0 200 90" aria-label="Bus topology"><line x1="10" y1="45" x2="190" y2="45"/><line x1="40" y1="45" x2="40" y2="20"/><line x1="90" y1="45" x2="90" y2="70"/><line x1="140" y1="45" x2="140" y2="20"/><circle cx="40" cy="14" r="9"/><circle cx="90" cy="76" r="9"/><circle cx="140" cy="14" r="9"/></svg>
+<ul><li>Devices share one backbone, so cabling is minimal.</li><li>A backbone failure can disrupt everyone.</li><li>Mostly a historical or conceptual example today.</li></ul></div>
+<div class="c rv"><h3>Star</h3>
+<svg class="d" viewBox="0 0 200 90" aria-label="Star topology"><line x1="100" y1="45" x2="30" y2="15"/><line x1="100" y1="45" x2="170" y2="15"/><line x1="100" y1="45" x2="30" y2="75"/><line x1="100" y1="45" x2="170" y2="75"/><circle class="f" cx="100" cy="45" r="11"/><circle cx="30" cy="15" r="9"/><circle cx="170" cy="15" r="9"/><circle cx="30" cy="75" r="9"/><circle cx="170" cy="75" r="9"/></svg>
+<ul><li>Every device connects to a central device.</li><li>Easy to manage and expand.</li><li>One broken link usually affects only that device, but if the center fails, the network is disrupted.</li></ul></div>
+<div class="c rv"><h3>Ring</h3>
+<svg class="d" viewBox="0 0 200 90" aria-label="Ring topology"><circle class="r" cx="100" cy="45" r="34"/><circle cx="100" cy="11" r="9"/><circle cx="133" cy="35" r="9"/><circle cx="120" cy="74" r="9"/><circle cx="80" cy="74" r="9"/><circle cx="67" cy="35" r="9"/></svg>
+<ul><li>Devices are arranged in a ring, physically or logically.</li><li>Traffic follows the ring's forwarding arrangement.</li><li>Failure behavior depends on the technology and on whether redundancy exists.</li></ul></div>
+</div></div></section>
+
+<section class="s"><div class="in"><span class="m rv">Larger designs</span><h2 class="rv">Mesh and hierarchical</h2>
+<div class="g" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+<div class="c rv"><h3>Mesh</h3>
+<svg class="d" viewBox="0 0 200 95" aria-label="Mesh topology"><path d="M100 10L136 36L122 82L78 82L64 36Z M100 10L122 82 M100 10L78 82 M136 36L78 82 M136 36L64 36 M122 82L64 36"/><circle cx="100" cy="10" r="8"/><circle cx="136" cy="36" r="8"/><circle cx="122" cy="82" r="8"/><circle cx="78" cy="82" r="8"/><circle cx="64" cy="36" r="8"/></svg>
+<ul><li>Devices have multiple interconnections.</li><li>Extra paths can improve resilience when forwarding or routing can use them.</li><li>More links mean higher cost and complexity.</li></ul></div>
+<div class="c rv"><h3>Extended star (hierarchical)</h3>
+<svg class="d" viewBox="0 0 200 95" aria-label="Hierarchical topology"><line x1="100" y1="12" x2="55" y2="47"/><line x1="100" y1="12" x2="145" y2="47"/><line x1="55" y1="47" x2="25" y2="85"/><line x1="55" y1="47" x2="85" y2="85"/><line x1="145" y1="47" x2="115" y2="85"/><line x1="145" y1="47" x2="175" y2="85"/><circle class="f" cx="100" cy="12" r="9"/><circle class="f" cx="55" cy="47" r="8"/><circle class="f" cx="145" cy="47" r="8"/><circle cx="25" cy="85" r="7"/><circle cx="85" cy="85" r="7"/><circle cx="115" cy="85" r="7"/><circle cx="175" cy="85" r="7"/></svg>
+<ul><li>Several stars joined in a structured hierarchy.</li><li>Easier to organize and grow large networks.</li><li>A common model for offices and campuses.</li></ul></div></div>
+<p class="note rv">These ideas overlap: a hierarchy is made of star sections. Not every topology is equally common today. The goal is familiarity, not memorization.</p></div></section>
+
+<section class="s"><div class="in"><span class="m rv">The building blocks</span><h2 class="rv">Network components</h2>
+<div class="g">
+<div class="c rv"><span class="t">End devices</span><h3>Where data starts and ends</h3><p>Laptops, desktops, smartphones, printers, and servers. They send, receive, and use network services.</p></div>
+<div class="c rv"><span class="t">Network devices</span><h3>What moves the data</h3><ul><li><b>Switch:</b> connects devices inside a local network.</li><li><b>Router:</b> connects different networks.</li><li><b>Access point:</b> lets wireless devices join the wired network.</li></ul></div>
+<div class="c rv"><span class="t">Transmission media</span><h3>What carries the signal</h3><ul><li>Copper Ethernet cabling</li><li>Optical fiber</li><li>Wireless radio signals</li></ul></div>
+</div>
+<svg class="d rv" viewBox="0 0 600 40" style="margin-top:2em" aria-hidden="true"><line x1="100" y1="20" x2="250" y2="20"/><line x1="350" y1="20" x2="500" y2="20"/><circle cx="100" cy="20" r="10"/><circle class="f" cx="300" cy="20" r="12"/><circle cx="500" cy="20" r="10"/><text x="300" y="46" text-anchor="middle">links connect them</text></svg></div></section>
+
+<section class="s"><div class="in"><span class="m rv">Foundational distinction</span><h2 class="rv">Switch vs. router</h2>
+<div class="g" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
+<div class="c rv"><span class="t">Layer 2 · Frames</span><h3>Switch</h3><ul><li>Connects devices within a local network.</li><li>Learns source MAC addresses and uses its MAC address table to forward Ethernet frames.</li><li>In its basic Layer 2 role, it does not route between separate IP networks.</li></ul></div>
+<div class="c rv"><span class="t">Layer 3 · Packets</span><h3>Router</h3><ul><li>Connects different IP networks.</li><li>Uses IP addresses and its routing information to forward packets toward their destinations.</li></ul></div></div>
+<p class="lead note rv">A <span class="hl">switch</span> forwards <b>frames</b> within a Layer 2 network; a <span class="hl">router</span> forwards <b>packets</b> between IP networks.</p></div></section>
+
+<section class="s"><div class="in two">
+<div><span class="m rv">The rules</span><h2 class="rv">Communication and protocols</h2>
+<p class="rv">Every exchange has a <b>sender</b>, a <b>receiver</b>, and a <b>medium</b>. A <span class="hl">protocol</span> is a set of rules for how devices format, exchange, interpret, and handle information.</p>
+<p class="note rv">These protocols do different jobs. They work together, they do not compete.</p></div>
+<div class="st rv" style="grid-template-columns:9em 1fr">
+<b class="h">Ethernet, Wi-Fi</b><span>Local network communication</span>
+<b class="h">IP</b><span>Addressing and forwarding between networks</span>
+<b class="h">TCP, UDP</b><span>Transport between applications</span>
+<b class="h">DNS</b><span>Turns domain names into addresses</span>
+<b class="h">HTTP, HTTPS</b><span>Web communication</span>
+<b class="h">DHCP</b><span>Automatic IP configuration</span></div>
+</div></section>
+
+<section class="s"><div class="in"><span class="m rv">Two kinds of address</span><h2 class="rv">MAC address vs. IP address</h2>
+<div class="g" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
+<div class="c rv"><span class="t">Layer 2 · Local link</span><h3>MAC address</h3><ul><li>Identifies an interface in local network communication.</li><li>Ethernet frames use it for delivery on the local link.</li><li>Can be changed or locally administered, so it is not always permanent.</li></ul></div>
+<div class="c rv"><span class="t">Layer 3 · Across networks</span><h3>IP address</h3><ul><li>A logical address that helps deliver packets across IP networks.</li><li>IPv4 uses 32 bits; IPv6 uses 128 bits.</li><li>Set manually or automatically, for example by DHCP.</li></ul></div></div>
+<p class="note rv">Both addresses can exist on the same interface. The MAC address handles the next hop; the IP address describes the final destination. Subnetting comes in Session 02.</p></div></section>
+
+<section class="s"><div class="in two">
+<div><span class="m rv">Making it manageable</span><h2 class="rv">Why do we need network models?</h2>
+<p class="lead rv">Communication involves many jobs. A model splits them into layers we can understand one at a time.</p></div>
+<div><ul class="ul rv" style="font-size:1.1em"><li>Break a complicated process into understandable parts.</li><li>Give everyone a shared vocabulary.</li><li>Help isolate problems when troubleshooting.</li><li>Show how different protocols fit together.</li></ul>
+<p class="note rv">The OSI model is a conceptual framework. It is not a device, and it does not describe every real implementation perfectly.</p></div>
+</div></section>
+
+<section class="s"><div class="in two">
+<div><span class="m rv">Reference model</span><h2 class="rv">The OSI model</h2>
+<p class="rv">Seven layers, from the application at the top to the signal at the bottom. A memory aid, top to bottom: <b>All People Seem To Need Data Processing</b>.</p>
+<p class="note rv">Real protocols do not always fit one layer neatly. For example, TLS does not belong exclusively to Layer 6.</p></div>
+<div class="st rv" style="grid-template-columns:auto 8em 1fr;font-size:.88em">
+<span class="n">7</span><b class="h">Application</b><span>Network services for applications, such as HTTP and DNS</span>
+<span class="n">6</span><b class="h">Presentation</b><span>Data representation, encoding, compression, encryption</span>
+<span class="n">5</span><b class="h">Session</b><span>Establishing and managing communication sessions</span>
+<span class="n">4</span><b class="h">Transport</b><span>Application-to-application delivery with TCP or UDP; ports identify endpoints</span>
+<span class="n">3</span><b class="h">Network</b><span>Logical addressing and forwarding between networks (IP)</span>
+<span class="n">2</span><b class="h">Data Link</b><span>Local delivery, framing, MAC addressing (Ethernet, Wi-Fi)</span>
+<span class="n">1</span><b class="h">Physical</b><span>Raw bits as electrical, optical, or radio signals</span></div>
+</div></section>
+
+<section class="s"><div class="in"><span class="m rv">Practical model</span><h2 class="rv">The TCP/IP model</h2>
+<p class="rv lead">The framework behind the Internet protocol suite. The mapping to OSI is approximate, and references name the link layer differently.</p>
+<div class="mp rv">
+<div><span class="a">Application</span><br><span class="l">HTTP, DNS, DHCP</span></div><div><span class="l">OSI</span><br><span class="a">Application, Presentation, Session</span></div>
+<div><span class="a">Transport</span><br><span class="l">TCP, UDP</span></div><div><span class="l">OSI</span><br><span class="a">Transport</span></div>
+<div><span class="a">Internet</span><br><span class="l">IP</span></div><div><span class="l">OSI</span><br><span class="a">Network</span></div>
+<div><span class="a">Network Access / Link</span><br><span class="l">Ethernet, Wi-Fi</span></div><div><span class="l">OSI</span><br><span class="a">Data Link, Physical</span></div></div>
+<p class="note rv">They are not rival systems. OSI gives a detailed shared vocabulary; TCP/IP reflects how the internet is built. Both are useful.</p></div></section>
+
+<section class="s"><div class="in two">
+<div><span class="m rv">Putting it together</span><h2 class="rv">Following data through the layers</h2>
+<p class="rv"><span class="hl">Encapsulation:</span> each layer wraps the data with the information it needs for its part of the journey.</p>
+<p class="note rv">Along the path, a switch reads the local-link frame. A router looks at the IP packet and forwards it toward another network.</p></div>
+<div class="st rv" style="grid-template-columns:1fr 1fr;font-size:.95em">
+<b class="h">Application data</b><span>What the app wants to send</span>
+<b class="h">Segment / datagram</b><span>Transport: TCP or UDP</span>
+<b class="h">IP packet</b><span>Network: source and destination IP</span>
+<b class="h">Frame</b><span>Link: local MAC delivery</span>
+<b class="h">Bits</b><span>Signals on cable, fiber, or radio</span></div>
+</div></section>
+
+<section class="s"><div class="in"><span class="m rv">Recap</span><h2 class="rv">Key takeaways</h2>
+<div class="g" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+<div class="c rv"><p>Networks connect devices so they can exchange data and share resources.</p></div>
+<div class="c rv"><p>Topology describes how devices and links are arranged.</p></div>
+<div class="c rv"><p>End devices, switches, routers, and media each have a different role.</p></div>
+<div class="c rv"><p>Protocols define how communication works.</p></div>
+<div class="c rv"><p>MAC and IP addresses serve different purposes.</p></div>
+<div class="c rv"><p>OSI and TCP/IP help us understand communication layer by layer.</p></div></div>
+<p class="lead note rv"><span class="t">Next session</span><br>IP Addressing &amp; Subnetting</p></div></section>
+
+<section class="s cov end" aria-label="Questions"><div class="in">
+<span class="m rv">Cipher Team · Networking Camp · Session 01</span>
+<h1 class="rv">Questions?</h1>
+<div class="rule rv"></div></div></section>
+
+</main>
+<script>
+(function(){
+var d=document,r=d.documentElement,S=[].slice.call(d.querySelectorAll('.s')),bar=d.getElementById('bar'),nn=d.getElementById('n'),cur=0,N=S.length;
+var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+function lab(i){nn.textContent=('0'+(i+1)).slice(-2)+' / '+N}
+function prog(){var h=r.scrollHeight-innerHeight;bar.style.transform='scaleX('+(h>0?Math.min(1,scrollY/h):1)+')';bar.setAttribute('aria-valuenow',Math.round(h>0?scrollY/h*100:100))}
+addEventListener('scroll',prog,{passive:true});prog();lab(0);
+if('IntersectionObserver' in window){
+r.className+=' js';
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');cur=S.indexOf(e.target);lab(cur)}})},{threshold:.5});
+S.forEach(function(s){io.observe(s)});
+S[0].classList.add('on');
+}
+function go(dir){
+var s=S[cur],b=s.getBoundingClientRect();
+if(dir>0&&b.bottom>innerHeight+8){scrollBy({top:innerHeight*.85,behavior:rm?'auto':'smooth'});return}
+if(dir<0&&b.top<-8){scrollBy({top:-innerHeight*.85,behavior:rm?'auto':'smooth'});return}
+var i=Math.max(0,Math.min(N-1,cur+dir));S[i].scrollIntoView({behavior:rm?'auto':'smooth',block:'start'})}
+addEventListener('keydown',function(e){
+if(e.altKey||e.ctrlKey||e.metaKey)return;
+var t=e.target&&e.target.tagName;if(t==='INPUT'||t==='TEXTAREA'||t==='SELECT')return;
+var k=e.key,dir=0;
+if(k==='ArrowDown'||k==='PageDown'||(k===' '&&!e.shiftKey))dir=1;
+else if(k==='ArrowUp'||k==='PageUp'||(k===' '&&e.shiftKey))dir=-1;
+else if(k==='Home'){e.preventDefault();S[0].scrollIntoView();return}
+else if(k==='End'){e.preventDefault();S[N-1].scrollIntoView();return}
+if(dir){e.preventDefault();go(dir)}});
+})();
+</script>
+</body>
+</html>

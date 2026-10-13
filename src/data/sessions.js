@@ -8,7 +8,7 @@
  */
 window.CAMP_SESSIONS = [
   { id: "01", title: "Introduction to Networking",
-    description: "Network fundamentals, components, and how devices communicate.", href: "sessions/index.html" },
+    description: "Network fundamentals, components, and how devices communicate.", href: "sessions/session-01.html" },
   { id: "02", title: "IP Addressing & Subnetting",
     description: "IPv4, subnet masks, and practical network division.", href: null },
   { id: "03", title: "Switching & VLANs",
