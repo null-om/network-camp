@@ -14,7 +14,7 @@ window.CAMP_SESSIONS = [
   { id: "03", title: "Switching & VLANs",
     description: "How switches work, and isolating devices with VLANs.", href: null },
   { id: "04", title: "Routing",
-    description: "The role of the router and connecting different networks.", href: null },
+    description: "The role of the router and connecting different networks.", href: "sessions/session-04.html" },
   { id: "05", title: "Multilayer Switch & DHCP",
     description: "Inter-VLAN routing and automatic IP address assignment.", href: null },
   { id: "06", title: "Wireless Networking",
