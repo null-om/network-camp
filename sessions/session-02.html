@@ -358,27 +358,7 @@ sup{font-size:.65em;line-height:0}
 <p class="note rv">The highlighted part is the network portion (the first 24 bits). Keep it, set the host part to 0, and you get the network address.</p>
 </div></section>
 
-<!-- 08 Two scenarios -->
-<section class="s cp" aria-label="Two network scenarios"><div class="in">
-<span class="m rv">Cisco Packet Tracer</span><h2 class="rv">Two Network Scenarios</h2>
-<div class="g rv" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2em;margin-top:.4em">
-<div><span class="t">Scenario A · Same network</span>
-<!-- SCREENSHOT A: place the Packet Tracer image at images/session02/same-network.png -->
-<figure class="fig sc">
-<img src="images/session02/same-network.png" alt="Packet Tracer: PC0 and PC1 configured in the same network 192.168.1.0/24" onload="this.parentNode.classList.add('ok')" onerror="this.parentNode.classList.remove('ok')">
-<div class="ph" aria-hidden="true"><div class="bars"><i></i><i></i><i></i></div><span class="pt">Same-network screenshot</span><span class="pp">images/session02/same-network.png</span></div></figure>
-<div class="pc"><span>PC0 <b>192.168.1.10</b></span><span>PC1 <b>192.168.1.20</b></span><span>Mask <b>255.255.255.0</b></span></div>
-<p class="note" style="margin-top:.6em">Both devices belong to <b>192.168.1.0/24</b>.</p></div>
-<div><span class="t">Scenario B · Different networks</span>
-<!-- SCREENSHOT B: place the Packet Tracer image at images/session02/different-networks.png -->
-<figure class="fig sc">
-<img src="images/session02/different-networks.png" alt="Packet Tracer: PC0 and PC1 configured in different networks 192.168.1.0/24 and 192.168.2.0/24" onload="this.parentNode.classList.add('ok')" onerror="this.parentNode.classList.remove('ok')">
-<div class="ph" aria-hidden="true"><div class="bars"><i></i><i></i><i></i></div><span class="pt">Different-networks screenshot</span><span class="pp">images/session02/different-networks.png</span></div></figure>
-<div class="pc"><span>PC0 <b>192.168.1.10</b></span><span>PC1 <b>192.168.2.20</b></span><span>Mask <b>255.255.255.0</b></span></div>
-<p class="note" style="margin-top:.6em">PC0 is in <b>192.168.1.0/24</b>; PC1 is in <b>192.168.2.0/24</b>.</p></div>
-</div></div></section>
-
-<!-- 09 Why subnetting -->
+<!-- 08 Why subnetting -->
 <section class="s cp" aria-label="Why do we need subnetting"><div class="in">
 <span class="m rv">Why subnetting?</span><h2 class="rv q" style="font-size:clamp(1.8rem,3.4vw,2.9rem)">What happens when a network becomes too large to manage as one network?</h2>
 <p class="lead rv" style="margin:0 0 .2em"><b>Subnetting</b> divides one larger IP network into multiple smaller logical networks.</p>
@@ -387,7 +367,7 @@ sup{font-size:.65em;line-height:0}
 <p class="tr rv">Now that we understand why networks need to be divided, let’s learn how subnetting actually works.</p>
 </div></section>
 
-<!-- 10 How subnetting works -->
+<!-- 09 How subnetting works -->
 <section class="s cp" aria-label="How subnetting works"><div class="in">
 <span class="m rv">Subnetting</span><h2 class="rv">How Subnetting Works</h2>
 <div class="two" style="align-items:start;gap:3vw">
@@ -408,7 +388,7 @@ sup{font-size:.65em;line-height:0}
 <div class="c"><span class="t">Usable hosts per subnet</span><div class="fm">2<sup>h</sup> − 2</div><p>h = remaining host bits; the 2 reserved addresses are the network and broadcast addresses. Here: 2<sup>7</sup> = 128, so 128 − 2 = <b>126 usable</b>.</p></div>
 </div></div></section>
 
-<!-- 11 Worked example -->
+<!-- 10 Worked example -->
 <section class="s cp" aria-label="Subnetting worked example"><div class="in">
 <span class="m rv">Worked example</span><h2 class="rv">Subnetting: A Worked Example</h2>
 <p class="lead rv" style="margin:0 0 .4em">We have <b>192.168.1.0/24</b> and want to divide it into <b>two</b> smaller subnets.</p>
@@ -419,7 +399,7 @@ sup{font-size:.65em;line-height:0}
 <div class="as rv" style="transition-delay:1.3s;margin-top:.5em"><div class="ab"><div class="ar"><b style="color:inherit">Subnet 1</b><br>.0 – .127</div><div class="ad"><span class="tt">Network 192.168.1.0/25</span><span class="k">NETWORK</span><span class="v">192.168.1.0</span><span class="k">FIRST USABLE</span><span class="v">192.168.1.1</span><span class="k">LAST USABLE</span><span class="v">192.168.1.126</span><span class="k">BROADCAST</span><span class="v">192.168.1.127</span></div></div><div class="ab bd" data-b="boundary: .127 | .128"><div class="ar"><b style="color:inherit">Subnet 2</b><br>.128 – .255</div><div class="ad"><span class="tt">Network 192.168.1.128/25</span><span class="k">NETWORK</span><span class="v">192.168.1.128</span><span class="k">FIRST USABLE</span><span class="v">192.168.1.129</span><span class="k">LAST USABLE</span><span class="v">192.168.1.254</span><span class="k">BROADCAST</span><span class="v">192.168.1.255</span></div></div></div></div></div>
 </div></section>
 
-<!-- 12 Second example -->
+<!-- 11 Second example -->
 <section class="s cp" aria-label="A second subnetting example"><div class="in">
 <span class="m rv">Second example</span><h2 class="rv">A Second Subnetting Example</h2>
 <p class="lead rv" style="margin:0 0 .4em">We have <b>192.168.1.0/24</b> and want to divide it into <b>four</b> smaller subnets.</p>
@@ -431,7 +411,7 @@ sup{font-size:.65em;line-height:0}
 <p class="tr rv" style="transition-delay:1.3s">More subnets mean fewer available host addresses in each subnet.</p>
 </div></section>
 
-<!-- 13 Essential network configuration -->
+<!-- 12 Essential network configuration -->
 <section class="s cp" aria-label="Essential network configuration"><div class="in">
 <span class="m rv">Network configuration</span><h2 class="rv">Essential Network Configuration</h2>
 <div class="cfg"><div class="ch rv"><span>Device configuration</span><span>Example values</span></div><div class="cr rv" style="transition-delay:0.10s"><div class="cn">IP Address</div><div class="cv">192.168.1.10</div><div class="cd">Identifies a device’s network interface within an IP network.</div></div><div class="cr rv" style="transition-delay:0.25s"><div class="cn">Subnet Mask<span class="tg">Learned</span></div><div class="cv">255.255.255.0 (/24)</div><div class="cd">Shows which part of the IP address is the network and which is the host.</div></div><div class="cr nw2 rv" style="transition-delay:0.40s"><div class="cn">Default Gateway<span class="tg">New</span></div><div class="cv">192.168.1.1</div><div class="cd">The address a device uses to reach destinations <b>outside its local network</b>. Usually the local router’s IP address.</div></div><div class="cr rv" style="transition-delay:0.55s"><div class="cn">DNS Server<span class="tg">Session 01</span></div><div class="cv">8.8.8.8</div><div class="cd">Resolves domain names into IP addresses, e.g. example.com into an IP address.</div></div></div>
@@ -442,14 +422,14 @@ sup{font-size:.65em;line-height:0}
 <div class="pr"><span class="k">PRIVATE</span><span>Used within private networks.</span><span class="k">PUBLIC</span><span>Used for addressing on the public Internet.</span><span class="k">NAT</span><span>Commonly lets private-address devices access external networks.</span></div></div>
 </div></div></section>
 
-<!-- 14 Key takeaways -->
+<!-- 13 Key takeaways -->
 <section class="s cp" aria-label="Key takeaways"><div class="in"><span class="m rv">Recap</span><h2 class="rv">Key takeaways</h2>
 <div class="g" style="grid-template-columns:repeat(auto-fit,minmax(250px,1fr))">
 <div class="c rv"><span class="t">01 · MAC vs. IP</span><p>MAC and IP addresses serve different purposes at different network layers.</p></div><div class="c rv"><span class="t">02 · IPv4</span><p>An IPv4 address has 32 bits, divided into four octets.</p></div><div class="c rv"><span class="t">03 · Binary</span><p>Binary helps us understand IP addressing and subnet masks.</p></div><div class="c rv"><span class="t">04 · IP classes</span><p>Traditional classes introduced the original classful addressing system.</p></div><div class="c rv"><span class="t">05 · Subnet mask</span><p>It identifies the network and host portions of an IP address.</p></div><div class="c rv"><span class="t">06 · Subnetting</span><p>Borrowing host bits divides a larger network into smaller subnets.</p></div><div class="c rv"><span class="t">07 · Configuration</span><p>Devices rely on an IP address, subnet mask, gateway, and DNS.</p></div>
 <div class="c nx rv"><span class="t">Next session</span><div class="nm2">Switching &amp; VLANs</div><p>From understanding IP networks to understanding how devices connect within them.</p></div>
 </div></div></section>
 
-<!-- 15 Questions -->
+<!-- 14 Questions -->
 <section class="s cov end" aria-label="Questions"><div class="in qa">
 <div><span class="m rv">Cipher Team · Networking Camp · Session 02</span>
 <h1 class="rv">Questions?</h1>
