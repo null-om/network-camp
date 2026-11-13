@@ -12,7 +12,7 @@ window.CAMP_SESSIONS = [
   { id: "02", title: "IP Addressing & Subnetting",
     description: "IPv4, subnet masks, and practical network division.", href: "sessions/session-02.html" },
   { id: "03", title: "Switching & VLANs",
-    description: "How switches work, and isolating devices with VLANs.", href: null },
+    description: "How switches work, and isolating devices with VLANs.", href: "sessions/session-03.html" },
   { id: "04", title: "Routing",
     description: "The role of the router and connecting different networks.", href: "sessions/session-04.html" },
   { id: "05", title: "Multilayer Switch & DHCP",
